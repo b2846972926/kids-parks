@@ -9,8 +9,8 @@ const authenticateToken = (req, res, next) => {
   jwt.verify(token, SECRET, (err, user) => {
     if (err) return res.status(403).json({ error: "無效或過期的 token" });
     req.user = user;
+    next();
   });
-  next();
 };
 
 module.exports = authenticateToken;
